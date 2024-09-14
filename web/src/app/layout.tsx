@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { StarknetProvider } from "@/components/starknet-provider";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+//const inter = Courier_Prime({ subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
-  title: "Basecamp IX",
+  title: "Bootcamp Brasil",
   description: "Frontend Workshop",
 };
 
@@ -17,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <StarknetProvider>{children}</StarknetProvider>
       </body>
     </html>

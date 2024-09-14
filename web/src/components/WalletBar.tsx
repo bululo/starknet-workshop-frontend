@@ -14,9 +14,9 @@ function WalletConnected() {
 
   return (
     <div>
-      <span>Connected: {shortenedAddress}</span>
+      <span>Connected: {shortenedAddress} </span>
       <button
-        className="bg-yellow-300 border border-black hover:bg-yellow-500 text-black font-regular py-2 px-4"
+        className="bg-black border border-black hover:bg-green-900 font-regular py-2 px-4"
         onClick={() => disconnect()}
       >
         Disconnect
@@ -32,13 +32,17 @@ function ConnectWallet() {
     <div>
       <span>Choose a wallet: </span>
       {connectors.map((connector) => {
-        return (
-          <Button
-            key={connector.id}
-            onClick={() => connect({ connector })}
-            className="gap-x-2 mr-2"
-          >
-            {connector.id}
+        // Define button styles based on connector id
+        const buttonStyles = connector.id === 'braavos'
+          ? 'bg-blue-700 hover:bg-blue-500'
+          : 'bg-red-700 hover:bg-red-500';
+          return (
+            <Button
+              key={connector.id}
+              onClick={() => connect({ connector })}
+              className={`gap-x-2 mr-2 border border-black font-regular py-2 px-4 ${buttonStyles}`}
+            >
+              {connector.id}
           </Button>
         );
       })}
@@ -49,5 +53,9 @@ function ConnectWallet() {
 export default function WalletBar() {
   const { address } = useAccount();
 
-  return address ? <WalletConnected /> : <ConnectWallet />;
+  return (
+    <div className="wallet-bar-container">
+      {address ? <WalletConnected /> : <ConnectWallet />}
+    </div>
+  );
 }
